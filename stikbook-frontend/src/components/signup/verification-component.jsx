@@ -1,5 +1,6 @@
 import React,{ useState } from "react";
-import Logo from "../../assets/images/logo_stikbook.png"
+import OTPInputBox from "../../utils/otpInput";
+import Logo from "../../assets/images/logo_stikbook.png";
 
 const Verification = (props) => {
     return (
@@ -9,9 +10,11 @@ const Verification = (props) => {
                 <h3 className="text-center">Join Stikbook</h3>
                 <small className="text-center" >Are you ready to meet great talent from around the world?</small>               
                 <h4 className="text-center">Verification</h4>
-                <small className="text-center">Enter the 6-digit code sent to your </small>
-                <h5 className="text-center">Email Address/ Phone Number</h5>
-                <h6 className="text-center">Resend Code</h6>
+                <p className="text-center"><small >Enter the 6-digit code sent to your </small>
+                <h5 className="text-center">Email Address/ Phone Number</h5></p>
+                <OTPInputBox/>
+
+                <p className="text-center"><a className="text-center" href="">Resend Code</a></p>
             </div>
 
             <div className="form-group text-center">

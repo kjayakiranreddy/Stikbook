@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import PhoneInput from 'react-phone-input';
-import 'react-phone-input/lib/style.css'
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
  
-const  phoneNumber = () =>{
+const  PhoneNumber = () =>{
     const [value, setValue] = useState()
-    return (
+    const PhoneNumberInput =  (
       <PhoneInput
-        placeholder="Enter phone number"
-        value={value}
-        onChange={setValue}/>
-    )
+                    country={'ca'}
+                    placeholder="Enter phone number"
+                    value={value}
+                    inputStyle={{width:'360px'}}
+                    onChange={setValue}/>
+    );
+    return PhoneNumberInput;
   }
-export default phoneNumber;
+export default PhoneNumber;

@@ -1,16 +1,14 @@
 import React,{ useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+
+import DatePickerInput from "../../utils/datePicker"
 import './signup-component.css'
 import Logo from "../../assets/images/logo_stikbook.png"
 import { useHistory } from "react-router-dom";
+import PhoneNumberInput from "../../utils/phoneInput"
 
 const SignUp =(props) => {
-    const [value, setValue] = useState();
-    const [startDate, setStartDate] = useState();
+    
     const history = useHistory();
     const handleSubmit = (evt) => {
        // evt.preventDefault();
@@ -47,11 +45,7 @@ const SignUp =(props) => {
                 </div>
 
                 <div className="form-group">
-                <PhoneInput
-                    country={'ca'}
-                    placeholder="Enter phone number"
-                    value={value}
-                    onChange={setValue}/>
+                <PhoneNumberInput/>
                 </div>
                 <div className="form-group">
                     <div className="float-left">
@@ -59,13 +53,11 @@ const SignUp =(props) => {
                             <option>Gender</option>
                             <option>Male</option>
                             <option>Female</option>
-                            <option>Others</option>
+                            <option>Other</option>
                         </select>
                     </div>
                     <div className="float-right">
-                    <DatePicker className="form-control"
-                        selected={startDate} placeholderText={'Enter date of birth'}
-                        onChange={date => setStartDate(date)}/>
+                        <DatePickerInput/>
                     </div>
                 </div>
                 <div className="form-group text-center">

@@ -39,7 +39,9 @@ const Login = () => {
                 </div> */}
                 <small className="text-center">By Login, you accept the <a href="terms">Terms of Use
                             and Privacy Policy</a>.</small>
-                <button type="submit" className="btn btn-primary btn-block">Login</button>
+                <div className="form-group text-center">
+                    <button type="submit" className="btn btn-link">Login</button>
+                </div>
                 <p className=" text-right">
                     Forgot <a href="#">password?</a>
                 </p>
