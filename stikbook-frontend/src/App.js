@@ -10,6 +10,7 @@ import SignUp from "./components/signup/index";
 import Verification from "./components/signup/verification-component";
 import ContinuePage from "./components/login/ContinuePage";
 import PasswordReset from "./components/login/PasswordReset";
+import userName from "./components/signup/signup-userName-component";
 import Navbar from "./components/home/navbar";
 
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/Forgotpassword" component={Forgotpassword} />
             <Route path="/ContinuePage" component={ContinuePage} />
             <Route path="/PasswordReset" component={PasswordReset} />
+            <Route path="/signUp-userName" component={userName} />
           </Switch>
         </div>
       </div>
