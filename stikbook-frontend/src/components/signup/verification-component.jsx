@@ -18,7 +18,7 @@ const Verification = (props) => {
             </div>
 
             <div className="form-group text-center">
-                <button type="submit" className="btn btn-link"><a href="interest">Continue</a></button>
+                <button type="submit" className="btn btn-link"><a href="signup-userName">Continue </a></button>
                 <p className="text-center">
                     Have an account? <a href="login">Login</a>
                 </p>
