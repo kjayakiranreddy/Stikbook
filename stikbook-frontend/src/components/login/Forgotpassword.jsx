@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Logo from "../../assets/images/logo_stikbook.png";
-import ForgotPassword from "./forgotpassword.css";
 import 'react-tabs/style/react-tabs.css';
-import PhoneInput from 'react-phone-input-2';
+import PhoneInput from "../../utils/phoneInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UsePasswordToggle from "../../utils/usePasswordToggle";
 
 const Forgotpassword = () => {
-  const [PasswordInputType, ToggleIcon] = UsePasswordToggle();
+  const [PasswordInputType,ToggleIcon] = UsePasswordToggle();
   const [selectedTab, setSelectedTab] = useState('tab-1');
 
   return (
@@ -33,18 +32,12 @@ const Forgotpassword = () => {
        </div>
       </TabPanel>
       <TabPanel item="tab-2">
-          <PhoneInput>
-      <div className="form-group input-group">
-                <div className="input-group-prepend">
-                        <span className="input-group-text"> <FontAwesomeIcon icon="fa fa-phone" /></span>
-                </div>
-                    <input type="number"className="form-control" placeholder="Phone Number" />
-
-      </div>
-      </PhoneInput>     
+      <PhoneInput />     
       </TabPanel>
+      <div className="form-group text-center">
+                    <button type="submit" className="btn btn-link">Reset Password</button>
+    </div>
     </Tabs>
-    <button type="submit" className="btn btn-primary btn-block">Reset Password</button>
     </form>
   );
   
