@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Login from "./components/login/index";
 import SignUp from "./components/signup/index";
-import Verification from "./components/signup/verification-component"
+import Verification from "./components/signup/verification-component";
+import userName from "./components/signup/signup-userName-component";
 import Navbar from "./components/home/navbar";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <Route path="/verification" component={Verification} />
+            <Route path="/signUp-userName" component={userName} />
           </Switch>
         </div>
       </div>
