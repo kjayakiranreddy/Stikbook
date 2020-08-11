@@ -8,6 +8,8 @@ import Login from "./components/login/index";
 import SignUp from "./components/signup/index";
 import Verification from "./components/signup/verification-component"
 import Navbar from "./components/home/navbar";
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import Interest from './components/home/interest';
 
 function App() {
   return (<Router>
@@ -19,6 +21,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <Route path="/verification" component={Verification} />
+            <Route path="/interest" component={Interest}/>
           </Switch>
         </div>
       </div>
