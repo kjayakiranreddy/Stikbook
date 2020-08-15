@@ -9,7 +9,7 @@ const  PhoneNumber = () =>{
                     country={'ca'}
                     placeholder="Enter phone number"
                     value={value}
-                    inputStyle={{width:'360px'}}
+                    inputStyle={{width:'340px'}}
                     onChange={setValue}/>
     );
     return PhoneNumberInput;

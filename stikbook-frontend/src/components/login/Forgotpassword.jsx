@@ -5,12 +5,15 @@ import 'react-tabs/style/react-tabs.css';
 import PhoneInput from "../../utils/phoneInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UsePasswordToggle from "../../utils/usePasswordToggle";
+import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
 
 const Forgotpassword = () => {
   const [PasswordInputType,ToggleIcon] = UsePasswordToggle();
   const [selectedTab, setSelectedTab] = useState('tab-1');
 
   return (
+    <StyledBody>
+            <CenterBox>
     <form action="ContinuePage" method="get">
     <div className="form-group">
     <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
@@ -35,10 +38,12 @@ const Forgotpassword = () => {
       <PhoneInput />     
       </TabPanel>
       <div className="form-group text-center">
-                    <button type="submit" className="btn btn-link">Reset Password</button>
+                    <Button type="submit" className="btn btn-link">Reset Password</Button>
     </div>
     </Tabs>
     </form>
+    </CenterBox>
+        </StyledBody>
   );
   
 };

@@ -1,0 +1,36 @@
+
+
+body,
+html,
+.App,
+#root,
+.auth-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+ .form-control:focus {
+  border-color: #DDA14B;
+  box-shadow: none;
+}
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem  #DDA14B40;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #DDA14B;
+  margin: 0;
+}
+
+.forgot-password a {
+  color: #DDA14B;
+}

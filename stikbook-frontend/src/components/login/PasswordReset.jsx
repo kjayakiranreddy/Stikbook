@@ -3,43 +3,45 @@ import "./login-component.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../../assets/images/logo_stikbook.png";
 import UsePasswordToggle from "../../utils/usePasswordToggle";
-import PhoneNumber from "../../utils/phoneInput";
-import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
+import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
 
 const PasswordReset = () => {
-    
-        const [PasswordInputType,ToggleIcon] = UsePasswordToggle();
-        return (
 
-            <form>
-                <div className="form-group">
-                    <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
-                    <h3 >StikBook</h3>
-                    <p className="text-center">Password Reset</p>
-                </div>
-                <div className="form-group input-group">
+    const [PasswordInputType, ToggleIcon] = UsePasswordToggle();
+    return (
+        <StyledBody>
+            <CenterBox>
+        <form>
+            <div className="form-group text-center">
+                <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
+                <h3 >StikBook</h3>
+                <p >Password Reset</p>
+            </div>
+            <div className="form-group input-group">
                 <div className="input-group-prepend">
-                        <span className="input-group-text"> <FontAwesomeIcon icon="lock" /></span>
-                    </div>
-                    <input type={PasswordInputType} className="form-control" placeholder="New Password" />
+                    <span className="input-group-text"> <FontAwesomeIcon icon="lock" /></span>
                 </div>
-               
+                <input type={PasswordInputType} className="form-control" placeholder="New Password" />
+                <span className="password-toogle-icon">{ToggleIcon}</span>
+            </div>
 
-                <div className="form-group input-group">
+
+            <div className="form-group input-group">
                 <div className="input-group-prepend">
-                        <span className="input-group-text"> <FontAwesomeIcon icon="lock" /></span>
-                    </div>
-                    <input type={PasswordInputType} className="form-control" placeholder="Confirm New Password" />
-                    <span className="password-toogle-icon">{ToggleIcon}</span>
+                    <span className="input-group-text"> <FontAwesomeIcon icon="lock" /></span>
                 </div>
-                <small className="text-center">By clicking Reset Password, you accept STIKBOOK's <a href="terms">Terms of Use
+                <input type={PasswordInputType} className="form-control" placeholder="Confirm New Password" />
+                
+            </div>
+            <small className="text-center">By clicking Reset Password, you accept STIKBook's <a href="terms">Terms of Use
                             and Privacy Policy</a>.</small><br></br>
-                            <div className="form-group text-center">
-                    <button type="submit" className="btn btn-link">Reset Password</button>
-                </div>
-            </form>
-           
-        );
-    }
+            <div className="form-group text-center">
+                <Button type="submit" className="btn btn-link">Reset Password</Button>
+            </div>
+        </form>
+        </CenterBox>
+        </StyledBody>
+    );
+}
 
 export default PasswordReset;

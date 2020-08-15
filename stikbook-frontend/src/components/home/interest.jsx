@@ -1,17 +1,18 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import './interest.css'
+import './interest.css';
+import { Button } from "../styledcomponets/lib";
 
 const Interest = () => {
     return(
         <div className="main"> 
         <div className="headings"> 
         <h1>Chose your interest</h1>
-        <h3>It will help us find you the video you love! select atleast 3 you like</h3>
-        <input  className="placeholder" type="text" placeholder="Search your faviurite talent here" ></input>
+        <p>It will help us find you the video you love! <span className="font-weight-bolder">select atleast 3 you like</span></p>
+        <input  className="searchbar" type="text" placeholder="Search your favourite talent" ></input>
         </div>
        <div className="pictures"> 
-       <h5>Trending</h5>
+       <h4>Trending</h4>
        <div className="pic1">
        <img className="fbicon" src={require('../../assets/images/fbicon.png')} alt="Facebook Logo"></img>
        <p>ART</p>
@@ -33,7 +34,7 @@ const Interest = () => {
        <p>ART</p> 
        </div>
        <div className="sub-heading">
-       <h5>Main Categories</h5>
+       <h4>Main Categories</h4>
        </div>
        </div>
        <div className="pictures"> 
@@ -60,7 +61,7 @@ const Interest = () => {
        </div>
 
        <div className="form-group text-center">
-       <button type="submit" className="btn btn-link"> <a href="interest">Continue</a></button>
+       <Button type="submit" className="btn btn-link"> Continue</Button>
        </div>
        </div>
        

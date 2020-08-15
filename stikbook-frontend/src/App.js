@@ -16,25 +16,23 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import Interest from './components/home/interest';
 
 
+
 function App() {
   return (<Router>
-    <div className="App">
-      <div className="auth-wrapper">
-        <div className="auth-inner">
+    <div className="App ">    
           <Switch>
-            <Route exact path='/' component={Login} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/verification" component={Verification} />
-            <Route path="/interest" component={Interest}/>
-            <Route path="/Forgotpassword" component={Forgotpassword} />
-            <Route path="/ContinuePage" component={ContinuePage} />
-            <Route path="/PasswordReset" component={PasswordReset} />
-            <Route path="/signUp-userName" component={userName} />
+                <Route exact path='/' component={Login} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={SignUp} />
+                <Route path="/verification" component={Verification} />
+                <Route path="/Forgotpassword" component={Forgotpassword} />
+                <Route path="/ContinuePage" component={ContinuePage} />
+                <Route path="/PasswordReset" component={PasswordReset} />
+                <Route path="/signUp-userName" component={userName} />
+              <Route path="/interest" component={Interest}/>
           </Switch>
-        </div>
-      </div>
-    </div></Router>
+    </div>
+    </Router>
   );
 }
 

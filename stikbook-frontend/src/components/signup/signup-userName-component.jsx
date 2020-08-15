@@ -4,6 +4,7 @@ import 'react-phone-input-2/lib/style.css';
 import "react-datepicker/dist/react-datepicker.css";
 import './signup-component.css'
 import Logo from "../../assets/images/logo_stikbook.png"
+import { Button, StyledBody,CenterBox} from "../styledcomponets/lib";
 
 import UsePasswordToggle from "../../utils/usePasswordToggle";
 
@@ -13,9 +14,10 @@ const userName =(props) => {
     const [PasswordInputType, ToggleIcon] = UsePasswordToggle();
     
         return ( 
-            <Fragment>
+            <StyledBody>
+            <CenterBox>
             <form>
-                <div className="form-group">
+                <div className="form-group text-center">
                     <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                     <h3 >Join Stikbook</h3>
                     <small className="text-center" >You are just one step away from meeting the 
@@ -56,7 +58,7 @@ const userName =(props) => {
 
             
                 <div className="form-group text-center">
-                    <button type="submit" className="btn btn-link"> sign Up</button>
+                    <Button type="submit" className="btn"> sign Up</Button>
                 </div>
                
                 </form>
@@ -65,8 +67,9 @@ const userName =(props) => {
                         Have an account? <a href="login">Login</a>
                     </p>
                 </div>
-            
-            </Fragment>
+                </CenterBox>
+            </StyledBody>
+           
         );
         }
 export default userName;

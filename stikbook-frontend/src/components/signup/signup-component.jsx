@@ -6,6 +6,7 @@ import './signup-component.css'
 import Logo from "../../assets/images/logo_stikbook.png"
 import { useHistory } from "react-router-dom";
 import PhoneNumberInput from "../../utils/phoneInput"
+import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
 
 const SignUp =(props) => {
     
@@ -15,8 +16,10 @@ const SignUp =(props) => {
         history.push("./verification");
     }
         return ( 
+            <StyledBody>
+            <CenterBox>
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
+                <div className="form-group text-center">
                     <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                     <h3 >Join Stikbook</h3>
                     <small className="text-center" >Are you ready to meet great talent from around the world?</small>
@@ -61,12 +64,12 @@ const SignUp =(props) => {
                     </div>
                 </div>
                 <div className="form-group text-center">
-                    <button type="submit" className="btn btn-link">Continue</button>
+                    <Button type="submit" className="btn">Continue</Button>
                 </div>
                 <div className="row">
-                    <div className="col"><hr /></div>
+                    <div className="col"><Hr /></div>
                     <div className="col-auto">Or</div>
-                    <div className="col"><hr /></div>
+                    <div className="col"><Hr /></div>
                 </div>
                 <div className="row logins">
                     <a><img className="icons" src={require('../../assets/images/googleicon.png')} alt="Google Logo"></img></a>
@@ -79,6 +82,8 @@ const SignUp =(props) => {
                     </p>
                 </div>
             </form>
+            </CenterBox>
+        </StyledBody>
         );
     }
 export default SignUp;
