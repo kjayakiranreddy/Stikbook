@@ -22,7 +22,7 @@ const userName =(props) => {
                     <h3 >Join Stikbook</h3>
                     <small className="text-center" >You are just one step away from meeting the 
                               great talent across the world? </small>
-                    <h4 className="text-center"> user Name and Password</h4>
+                    <h4 className="text-center"> User Name and Password</h4>
                 </div>
 
                 <div className="form-group input-group">
@@ -44,7 +44,7 @@ const userName =(props) => {
                 <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="lock" /></span>
                     </div>
-                    <input type={PasswordInputType} className="form-control" placeholder=" Enter confirmPassword" />
+                    <input type={PasswordInputType} className="form-control" placeholder="Enter confirmPassword" />
             
                 </div>
 
@@ -58,16 +58,14 @@ const userName =(props) => {
 
             
                 <div className="form-group text-center">
-                    <Button type="submit" className="btn"> sign Up</Button>
+                    <Button type="submit" className="btn"> Sign Up</Button>
                 </div>
                
                 </form>
-                <div>
-                    <p className="text-center">
-                        Have an account? <a href="login">Login</a>
-                    </p>
-                </div>
                 </CenterBox>
+                <CenterBox><p className="text-center">
+                        Have an account? <a href="login">Login</a>
+                    </p></CenterBox>
             </StyledBody>
            
         );
