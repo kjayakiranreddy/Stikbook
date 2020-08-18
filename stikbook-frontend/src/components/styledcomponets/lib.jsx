@@ -4,12 +4,11 @@ import BgImg from '../../assets/images/login_bg.jpg';
 
 export const Button = styled.button`
 color: white !important;
-margin: 1em;
-padding: 0.25em 1em;
-border: 2px solid #DDA14B;
-border-radius: 3px;
+margin-top:10px; 
+padding: 0.4em 3em;
+border: 1px solid #DDA14B;
+border-radius: 10px;
 background-color: #DDA14B !important;
-border-color: none !important;
 
 `;
 
@@ -36,11 +35,11 @@ box-shadow: none;
 
 
 export const CenterBox = styled.div`
-width: 430px;
+width: 405px;
 margin: auto;
 background: #ffffff;
 box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-padding: 35px 45px 35px 45px;
+padding: 25px 35px 25px 35px;
 border-radius: 15px;
 transition: all .3s;
 `

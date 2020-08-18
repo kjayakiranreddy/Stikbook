@@ -29,11 +29,12 @@ const Verification = (props) => {
 
             <div className="form-group text-center">
                 <Button type="submit" className="btn">Continue</Button>
-                <p className="text-center">
-                    Have an account? <a href="login">Login</a>
-                </p>
+               
             </div>
         </form>
+        </CenterBox>
+        <CenterBox>
+        <p className="text-center">Have an account? <a href="login">Login</a></p>
         </CenterBox>
         </StyledBody>
     );

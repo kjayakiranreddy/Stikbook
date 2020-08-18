@@ -65,7 +65,7 @@ const Login = () => {
 
                     <div className="row">
                         <div className="col"><Hr /></div>
-                        <div className="col-auto">Or</div>
+                        <div className="col-auto">OR</div>
                         <div className="col"><Hr /></div>
                     </div>
                     <div className="row logins">
@@ -73,12 +73,15 @@ const Login = () => {
                         <a><img className="icons" src={require('../../assets/images/fbicon.png')} alt="Facebook Logo"></img></a>
                         <a><img className="icons" src={require('../../assets/images/inicon.png')} alt="Linkedin Logo"></img></a>
                     </div>
-                    <div className="form-group signuptext"><p className="text-center"> No account? <a href="signup">Create one</a>!</p></div>
-
-
                 </form>
             </CenterBox>
+            <CenterBox>
+                <p className="text-center"> No account? <a href="signup">Create one</a>!</p>
+           </CenterBox>
         </StyledBody>
+       
+        
+           
     );
 }
 

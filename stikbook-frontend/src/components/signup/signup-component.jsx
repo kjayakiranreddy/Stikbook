@@ -93,7 +93,7 @@ const SignUp =(props) => {
                 </div>
                 <div className="row">
                     <div className="col"><Hr /></div>
-                    <div className="col-auto">Or</div>
+                    <div className="col-auto">OR</div>
                     <div className="col"><Hr /></div>
                 </div>
                 <div className="row logins">

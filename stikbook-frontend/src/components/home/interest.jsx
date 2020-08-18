@@ -67,4 +67,4 @@ const Interest = () => {
        
     );
 }
-export default Interest;
+export default Interest; 
