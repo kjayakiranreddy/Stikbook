@@ -7,13 +7,38 @@ import Logo from "../../assets/images/logo_stikbook.png"
 import { useHistory } from "react-router-dom";
 import PhoneNumberInput from "../../utils/phoneInput"
 import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
+import Moment from 'moment';
+import PhoneNumber from "../../utils/phoneInput";
 
 const SignUp =(props) => {
     
+    const [fNameVal, setFName] = useState();
+    const [lNameVal, setLName] = useState();
+    const [emailVal, setEmail] = useState();
+    const [genderVal, setGender] = useState();
+    const [phone, setPhone] =useState();
+    let [dob, setDob] = useState();
+
     const history = useHistory();
+    dob = Moment(dob).format('MM-DD-YYYY');
     const handleSubmit = (evt) => {
-       // evt.preventDefault();
-        history.push("./verification");
+        evt.preventDefault();
+        sessionStorage.setItem('phone Number', phone);
+        sessionStorage.setItem('dob', dob);
+        sessionStorage.setItem('firstName',fNameVal);
+        sessionStorage.setItem('lastName',lNameVal);
+        sessionStorage.setItem('email',emailVal);
+        sessionStorage.setItem('gender',genderVal);
+
+        if(phone != undefined && dob != undefined && fNameVal != undefined &&
+        lNameVal != undefined && emailVal != undefined && genderVal != undefined){
+            history.push("./verification");
+        }
+        else
+        {
+            alert('Please fill all the details');
+        }      
+          
     }
         return ( 
             <StyledBody>
@@ -30,37 +55,37 @@ const SignUp =(props) => {
                     <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="user" /></span>
                     </div>
-                    <input type="text" className="form-control" placeholder="First Name"/>
+                    <input type="text" className="form-control" value={fNameVal} onChange={(e) => setFName(e.target.value)} placeholder="First Name"/>
                 </div>
 
                 <div className="form-group input-group">
                 <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="user" /></span>
                     </div>
-                    <input type="text" className="form-control" placeholder="Last Name" />
+                    <input type="text" className="form-control" value={lNameVal} onChange={(e) => setLName(e.target.value)} placeholder="Last Name" />
                 </div>
 
                 <div className="form-group input-group">
                 <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="envelope" /></span>
                     </div>
-                    <input type="email" className="form-control" placeholder="Enter Email" />
+                    <input type="email" className="form-control" value={emailVal} onChange={(e) => setEmail(e.target.value)} placeholder="Enter Email" />
                 </div>
 
                 <div className="form-group">
-                <PhoneNumberInput/>
+                <PhoneNumberInput value={phone} onChange={(phone) => setPhone(phone)}/>
                 </div>
                 <div className="form-group">
                     <div className="float-left">
-                        <select className="form-control">
+                        <select className="form-control" value={genderVal} onChange={(e) => setGender(e.target.value)}>
                             <option>Gender</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="O">Other</option>
                         </select>
                     </div>
                     <div className="float-right">
-                        <DatePickerInput/>
+                        <DatePickerInput placeholderText={'Enter date of birth'} value={dob} onChange={(date) => setDob(date)}/>
                     </div>
                 </div>
                 <div className="form-group text-center">

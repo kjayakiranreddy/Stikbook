@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-const DatePickerInput=()=> {
+const DatePickerInput=({dob,value,onChange})=> {
 
-    const [startDate, setStartDate] = useState();
-    const dateInput = (<DatePicker className="form-control"
-    selected={startDate} placeholderText={'Enter date of birth'}
-    onChange={date => setStartDate(date)}/>);
+    const dateInput = (
+    <DatePicker className="form-control"
+    selected={dob} value={value} placeholderText={'Enter date of birth'}
+    onChange={onChange}/>
+    );
     return dateInput;
 }
 

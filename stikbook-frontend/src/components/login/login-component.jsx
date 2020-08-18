@@ -1,18 +1,38 @@
-import React from "react";
+import React, {useState} from "react";
 import "./login-component.css";
 import "../../assets/styles/commonstyle.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../../assets/images/logo_stikbook.png";
+import { useHistory } from "react-router-dom";
 import UsePasswordToggle from "../../utils/usePasswordToggle";
 import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
 
 const Login = () => {
 
     const [PasswordInputType, ToggleIcon] = UsePasswordToggle();
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const history = useHistory();
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        sessionStorage.setItem('email', email);
+        sessionStorage.setItem('password', password);
+
+        if(email != undefined && password != undefined){
+            history.push("./home");
+        }
+        else
+        {
+            alert('Please enter the username and password');
+        }      
+          
+    }
+
     return (
         <StyledBody>
             <CenterBox>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                         <h3 >Welcome back to StikBook</h3>
@@ -23,14 +43,14 @@ const Login = () => {
                         <div className="input-group-prepend">
                             <span className="input-group-text"> <FontAwesomeIcon icon="envelope" /></span>
                         </div>
-                        <input type="email" className="form-control" placeholder="Enter email" />
+                        <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" />
                     </div>
 
                     <div className="form-group input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text"> <FontAwesomeIcon icon="lock" /></span>
                         </div>
-                        <input type={PasswordInputType} className="form-control" placeholder="Enter password" />
+                        <input type={PasswordInputType} className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" />
                         <span className="password-toogle-icon">{ToggleIcon}</span>
                     </div>
 
