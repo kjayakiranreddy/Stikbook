@@ -6,33 +6,28 @@ import Logo from "../../assets/images/logo_stikbook.png";
 import { useHistory } from "react-router-dom";
 import UsePasswordToggle from "../../utils/usePasswordToggle";
 import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
+import {useForm} from 'react-hook-form';
 
 const Login = () => {
+
+    const {register, handleSubmit, errors} = useForm();
 
     const [PasswordInputType, ToggleIcon] = UsePasswordToggle();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const history = useHistory();
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
-        sessionStorage.setItem('email', email);
-        sessionStorage.setItem('password', password);
+    const onSubmit = data => {
 
-        if(email != undefined && password != undefined){
+        if(email !== undefined && password !== undefined){
             history.push("./home");
         }
-        else
-        {
-            alert('Please enter the username and password');
-        }      
-          
     }
 
     return (
         <StyledBody>
             <CenterBox>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
                         <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                         <h3 >Welcome back to StikBook</h3>
@@ -43,17 +38,23 @@ const Login = () => {
                         <div className="input-group-prepend">
                             <span className="input-group-text"> <FontAwesomeIcon icon="envelope" /></span>
                         </div>
-                        <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" />
+                        <input type="email" name="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} 
+                        placeholder="Enter email" ref={register({required : true})} />
                     </div>
-
+                    {errors.email && errors.email.type === "required" && (
+                    <p className="text-danger">Email is required</p>
+                    )}
                     <div className="form-group input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text"> <FontAwesomeIcon icon="lock" /></span>
                         </div>
-                        <input type={PasswordInputType} className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" />
+                        <input type={PasswordInputType} name="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} 
+                        placeholder="Enter password" ref={register({required : true})} />
                         <span className="password-toogle-icon">{ToggleIcon}</span>
                     </div>
-
+                    {errors.password && errors.password.type === "required" && (
+                    <p className="text-danger">Password is required</p>
+                    )}
                     <small className="text-center">By Login, you accept the <a href="terms">Terms of Use
                             and Privacy Policy</a>.</small>
                     <div className="form-group text-center">
