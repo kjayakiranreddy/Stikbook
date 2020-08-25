@@ -3,7 +3,7 @@ import './utils/fontAwsomeIcons'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Forgotpassword from "./components/login/Forgotpassword";
 import Login from "./components/login/index";
 import SignUp from "./components/signup/index";
@@ -11,8 +11,6 @@ import Verification from "./components/signup/verification-component";
 import ContinuePage from "./components/login/ContinuePage";
 import PasswordReset from "./components/login/PasswordReset";
 import userName from "./components/signup/signup-userName-component";
-import Navbar from "./components/home/navbar";
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import Interest from './components/home/interest';
 
 
@@ -30,6 +28,8 @@ function App() {
                 <Route path="/PasswordReset" component={PasswordReset} />
                 <Route path="/signUp-userName" component={userName} />
               <Route path="/interest" component={Interest}/>
+              <Redirect from="/" exact to="/login" />
+              <Redirect to="/not-found" />
           </Switch>
     </div>
     </Router>

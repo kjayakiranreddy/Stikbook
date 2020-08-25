@@ -9,6 +9,7 @@ import PhoneNumberInput from "../../utils/phoneInput"
 import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
 import Moment from 'moment';
 import {useForm} from 'react-hook-form';
+import axios from 'axios';
 
 const SignUp =(props) => {
 
@@ -24,7 +25,11 @@ const SignUp =(props) => {
     const history = useHistory();
     dob = Moment(dob).format('MM-DD-YYYY');
     
-    const onSubmit = data => {
+    const onSubmit = async () => {
+
+        const obj = {first_name:fNameVal,last_name:lNameVal,email:emailVal,phone:phone,gender:genderVal,dob:dob}; 
+        const {data:post } = await axios.post("http://localhost:5000/api/users/signup", obj);
+        console.log(post);
 
         if(phone !== undefined && dob !== undefined && fNameVal !== undefined &&
         lNameVal !== undefined && emailVal !== undefined && genderVal !== undefined){
@@ -37,7 +42,7 @@ const SignUp =(props) => {
             <CenterBox>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group text-center">
-                    <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
+                    <a href=""><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                     <h3 >Join Stikbook</h3>
                     <small className="text-center" >Are you ready to meet great talent from around the world?</small>
                     <h6 className="text-center"> Tell us a bit about yourself</h6>
@@ -47,7 +52,7 @@ const SignUp =(props) => {
                     <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="user" /></span>
                     </div>
-                    <input type="text" className="form-control" name="firstName" value={fNameVal} onChange={(e) => setFName(e.target.value)} 
+                    <input type="text" className="form-control" name="firstName" defaultValue={fNameVal} onChange={(e) => setFName(e.target.value)} 
                     placeholder="First Name" ref={register({required : true})}/>                    
                 </div>
                 {errors.firstName && errors.firstName.type === "required" && (
@@ -57,7 +62,7 @@ const SignUp =(props) => {
                 <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="user" /></span>
                     </div>
-                    <input type="text" className="form-control" name="lastName" value={lNameVal} onChange={(e) => setLName(e.target.value)} 
+                    <input type="text" className="form-control" name="lastName" defaultValue={lNameVal} onChange={(e) => setLName(e.target.value)} 
                     placeholder="Last Name" ref={register({required : true})} />
                 </div>
                 {errors.lastName && errors.lastName.type === "required" && (
@@ -67,14 +72,14 @@ const SignUp =(props) => {
                 <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="envelope" /></span>
                     </div>
-                    <input type="email" className="form-control" name="email" value={emailVal} onChange={(e) => setEmail(e.target.value)} 
+                    <input type="email" className="form-control" name="email" defaultValue={emailVal} onChange={(e) => setEmail(e.target.value)} 
                     placeholder="Enter Email" ref={register({required : true})} />
                 </div>
                 {errors.email && errors.email.type === "required" && (
                     <p className="text-danger">Email is required</p>
                 )}
                 <div className="form-group">
-                <PhoneNumberInput name="phone_number" value={phone} onChange={(phone) => setPhone(phone)} 
+                <PhoneNumberInput name="phone_number" defaultValue={phone} onChange={(phone) => setPhone(phone)} 
                 inputProps={{
                     name: 'phone_number',
                     required: true,
@@ -85,7 +90,7 @@ const SignUp =(props) => {
                     )}
                 <div className="form-group">
                     <div className="float-left">
-                        <select className="form-control" name="gender" value={genderVal} onChange={(e) => setGender(e.target.value)}
+                        <select className="form-control" name="gender" defaultValue={genderVal} onChange={(e) => setGender(e.target.value)}
                         ref={register({required : true})}>
                             <option value="">Gender</option>
                             <option value="M">Male</option>
@@ -94,7 +99,7 @@ const SignUp =(props) => {
                         </select>
                     </div>
                     <div className="float-right">
-                        <DatePickerInput placeholderText={'Enter date of birth'} value={dob} onChange={(date) => setDob(date)}/>
+                        <DatePickerInput placeholderText={'Enter date of birth'} defaultValue={dob} onChange={(date) => setDob(date)}/>
                     </div>
                 </div>
                 {errors.gender && (
@@ -109,9 +114,9 @@ const SignUp =(props) => {
                     <div className="col"><Hr /></div>
                 </div>
                 <div className="row logins">
-                    <a><img className="icons" src={require('../../assets/images/googleicon.png')} alt="Google Logo"></img></a>
-                    <a><img className="icons" src={require('../../assets/images/fbicon.png')} alt="Facebook Logo"></img></a>
-                    <a><img className="icons" src={require('../../assets/images/inicon.png')} alt="Linkedin Logo"></img></a>
+                    <a href=""><img className="icons" src={require('../../assets/images/googleicon.png')} alt="Google Logo"></img></a>
+                    <a href=""><img className="icons" src={require('../../assets/images/fbicon.png')} alt="Facebook Logo"></img></a>
+                    <a href=""><img className="icons" src={require('../../assets/images/inicon.png')} alt="Linkedin Logo"></img></a>
                 </div>
                 <div className=" form-group logintext">
                     <p className="text-center">

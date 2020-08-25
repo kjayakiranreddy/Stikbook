@@ -1,23 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React,{ useState, useRef } from 'react';
+import React,{ useState } from 'react';
 import 'react-phone-input-2/lib/style.css';
 import "react-datepicker/dist/react-datepicker.css";
 import './signup-component.css'
 import Logo from "../../assets/images/logo_stikbook.png";
 import UsePasswordToggle from "../../utils/usePasswordToggle";
 import PasswordStrengthIndicator from './passwordStrengthIndicator';
-import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
+import { Button, StyledBody,CenterBox } from "../styledcomponets/lib";
 import classnames from 'classnames';
 import { useHistory } from "react-router-dom";
 
 import {useForm} from 'react-hook-form';
+import axios from 'axios';
 
 
 const isNumberRegx = /\d/;
 const specialCharacterRegx = /[!$%&'*+-/=?^_`{}|~,.()@ ]/;
 const UserName = () => {
 
-    const {register, handleSubmit, errors, watch} = useForm();
+    const {register, handleSubmit, errors} = useForm();
     const [userName, setUserName] = useState();    
     const [password, setpassword] = useState();
     const [passwordErr, setpasswordErr] = useState();
@@ -39,7 +40,8 @@ const UserName = () => {
         switch (pwd) {
             case 'password':
                 setpassword(user.password);
-                user.password.length < 3 ? setpasswordErr('Password must contain 3 characters') : setpasswordErr('')
+                user.password.length < 3 ? setpasswordErr('Password must contain 3 characters') : setpasswordErr('');
+                break;
             case 'confPassword':
                 setconfPassword(user.confPassword);
                 user.confPassword !== password ? setconfPasswordErr('Password donot match') : setconfPasswordErr('');
@@ -60,9 +62,13 @@ const UserName = () => {
 
     };
 
-    const onSubmit = data => {
+    const onSubmit = async() => {
 
-        if(userName !== undefined){
+        const obj = {email:userName,userName:userName,password:password}; 
+        const {data:post } = await axios.post("http://localhost:5000/api/users/password_userName", obj);
+        console.log(post);
+        
+        if(userName !== undefined && password !== undefined){
             history.push("./interest");
         }         
     }       
@@ -72,7 +78,7 @@ const UserName = () => {
             <CenterBox>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group text-center">
-                    <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
+                    <a href=""><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                     <h3 >Join Stikbook</h3>
                     <small className="text-center" >You are just one step away from meeting the 
                               great talent across the world! </small>
@@ -83,7 +89,7 @@ const UserName = () => {
                     <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="user" /></span>
                     </div>
-                    <input type="text" name="name" ref={register({required : true})} className="form-control" value={userName}
+                    <input type="text" name="name" ref={register({required : true})} className="form-control" defaultValue={userName}
                     placeholder="User name" onChange={(e) => setUserName(e.target.value)} />
                 </div>
                 {errors.name && errors.name.type === "required" && (
@@ -96,7 +102,7 @@ const UserName = () => {
                     <input type={PasswordInputType} name="password" ref={register({required : true})}
                     className={classnames("form-control",{ 'is-invalid': passwordErr })}
                     onChange={(e) => handleChange(e, 'password')}                
-                    value={password}
+                    defaultValue={password}
                     onFocus={ () => setPasswordFocused(true)}  
                     onChange={e => onchangePassword(e.target.value)} 
                     placeholder="Enter Password"/>
@@ -111,7 +117,7 @@ const UserName = () => {
                     <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="lock" /></span>
                     </div>
-                    <input type={PasswordInputType} name="confPassword" ref={register({required : true})}
+                    <input type={PasswordInputType} defaultValue={confPassword} name="confPassword" ref={register({required : true})}
                     className={classnames("form-control", { 'is-invalid': confPasswordErr })}
                     placeholder="Enter confirm password"
                     onChange={(e) => handleChange(e, 'confPassword')}/>                                  

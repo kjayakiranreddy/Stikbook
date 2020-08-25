@@ -29,7 +29,7 @@ const Login = () => {
             <CenterBox>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
-                        <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
+                        <a href=""><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                         <h3 >Welcome back to StikBook</h3>
                         <p className="text-center">Login into your account</p>
                     </div>
@@ -38,7 +38,7 @@ const Login = () => {
                         <div className="input-group-prepend">
                             <span className="input-group-text"> <FontAwesomeIcon icon="envelope" /></span>
                         </div>
-                        <input type="email" name="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} 
+                        <input type="email" name="email" className="form-control" defaultValue={email} onChange={(e) => setEmail(e.target.value)} 
                         placeholder="Enter email" ref={register({required : true})} />
                     </div>
                     {errors.email && errors.email.type === "required" && (
@@ -48,7 +48,7 @@ const Login = () => {
                         <div className="input-group-prepend">
                             <span className="input-group-text"> <FontAwesomeIcon icon="lock" /></span>
                         </div>
-                        <input type={PasswordInputType} name="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} 
+                        <input type={PasswordInputType} name="password" className="form-control" defaultValue={password} onChange={(e) => setPassword(e.target.value)} 
                         placeholder="Enter password" ref={register({required : true})} />
                         <span className="password-toogle-icon">{ToggleIcon}</span>
                     </div>
@@ -70,9 +70,9 @@ const Login = () => {
                         <div className="col"><Hr /></div>
                     </div>
                     <div className="row logins">
-                        <a><img className="icons" src={require('../../assets/images/googleicon.png')} alt="Google Logo"></img></a>
-                        <a><img className="icons" src={require('../../assets/images/fbicon.png')} alt="Facebook Logo"></img></a>
-                        <a><img className="icons" src={require('../../assets/images/inicon.png')} alt="Linkedin Logo"></img></a>
+                        <a href=""><img className="icons" src={require('../../assets/images/googleicon.png')} alt="Google Logo"></img></a>
+                        <a href=""><img className="icons" src={require('../../assets/images/fbicon.png')} alt="Facebook Logo"></img></a>
+                        <a href=""><img className="icons" src={require('../../assets/images/inicon.png')} alt="Linkedin Logo"></img></a>
                     </div>
                 </form>
             </CenterBox>
