@@ -13,7 +13,7 @@ const PasswordReset = () => {
             <CenterBox>
         <form>
             <div className="form-group text-center">
-                <a href=""><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
+                <a href="/home"><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                 <h3 >StikBook</h3>
                 <p >Password Reset</p>
             </div>

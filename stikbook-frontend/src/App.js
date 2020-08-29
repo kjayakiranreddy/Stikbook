@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useMemo} from 'react';
 import './utils/fontAwsomeIcons'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -12,22 +12,48 @@ import ContinuePage from "./components/login/ContinuePage";
 import PasswordReset from "./components/login/PasswordReset";
 import userName from "./components/signup/signup-userName-component";
 import Interest from './components/home/interest';
+import {UserContext} from './components/context/userContext';
+
 
 
 
 function App() {
+  const [userEmail,setUserEmail]=useState(null);
+  const providerValue = useMemo(()=>({userEmail,setUserEmail}),[userEmail,setUserEmail])
   return (<Router>
     <div className="App ">    
           <Switch>
                 <Route exact path='/' component={Login} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={SignUp} />
-                <Route path="/verification" component={Verification} />
-                <Route path="/Forgotpassword" component={Forgotpassword} />
-                <Route path="/ContinuePage" component={ContinuePage} />
-                <Route path="/PasswordReset" component={PasswordReset} />
-                <Route path="/signUp-userName" component={userName} />
-              <Route path="/interest" component={Interest}/>
+                <UserContext.Provider value={providerValue}>
+                  <Route path="/login" component={Login} />
+                  <Route path="/signup" component={SignUp} />
+                  <Route path="/verification"
+                  render={props => {
+                    if( userEmail == null) return <Redirect to="/login" />;
+                    return <Verification {...props}/>;
+                  }}/>
+                  <Route path="/Forgotpassword" component={Forgotpassword} />
+                  <Route path="/ContinuePage" 
+                  render={props => {
+                    if( userEmail == null) return <Redirect to="/login" />;
+                    return <ContinuePage {...props}/>;
+                  }} />
+                  <Route path="/PasswordReset" 
+                  render={props => {
+                    if( userEmail == null) return <Redirect to="/login" />;
+                    return <PasswordReset {...props}/>;
+                  }} />
+                  <Route path="/UsernameSignup"
+                  render={props => {
+                    if( userEmail == null) return <Redirect to="/login" />;
+                    return <userName {...props}/>;
+                  }} />
+                  <Route path="/Interest" 
+                  render={props => {
+                    if( userEmail == null) return <Redirect to="/login" />;
+                    return <Interest {...props}/>;
+                  }} />
+                </UserContext.Provider>
               <Redirect from="/" exact to="/login" />
               <Redirect to="/not-found" />
           </Switch>

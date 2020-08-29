@@ -2,10 +2,14 @@ import React from "react";
 import './interest.css';
 import { Button } from "../styledcomponets/lib";
 
+
 const Interest = () => {
+    //const {userEmail,setUserEmail} = useContext(UserContext);
     return(
+    
         <div className="main"> 
         <div className="headings"> 
+        
         <h1>Chose your interest</h1>
         <p>It will help us find you the video you love! <span className="font-weight-bolder">select atleast 3 you like</span></p>
         <input  className="searchbar" type="text" placeholder="Search your favourite talent" ></input>
@@ -60,7 +64,8 @@ const Interest = () => {
        </div>
 
        <div className="form-group text-center">
-       <Button type="submit" className="btn btn-link"> Continue</Button>
+       <Button type="submit" className="btn btn-link" > Continue</Button>
+       
        </div>
        </div>
        

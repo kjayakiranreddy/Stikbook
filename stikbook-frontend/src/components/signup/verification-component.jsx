@@ -1,9 +1,10 @@
-import React,{ useState, useEffect } from "react";
+import React,{ useState, useEffect} from "react";
 import OTPInputBox from "../../utils/otpInput";
 import Logo from "../../assets/images/logo_stikbook.png";
 import { useHistory } from "react-router-dom";
 import { Button, StyledBody,CenterBox} from "../styledcomponets/lib";
 import axios from 'axios';
+
 
 const Verification = (props) => {
 
@@ -13,16 +14,19 @@ const Verification = (props) => {
     useEffect (() => {
 
     });
-
-    const handleSubmit = async(e) => {
+    
+    const handleSubmit = (e) => {
         e.preventDefault();
         const obj = {otp:otp}; 
-        let {data: email} = await axios.post("http://localhost:5000/api/auth/otp_verification", obj);
-        console.log(email);
-        
-        if(email !== undefined){
-            history.push("./signUp-userName");
-        }
+        async function postData(){
+            let {data: email} = await axios.post("auth/otp_verification", obj); 
+            if(email !== undefined){
+          
+                history.push("./UsernameSignup");
+            }  
+        }    
+        postData();   
+
      }
     return (
         <StyledBody>
@@ -33,8 +37,8 @@ const Verification = (props) => {
                 <h3 >Join Stikbook</h3>
                 <small  >Are you ready to meet great talent from around the world?</small>               
                 <h4>Verification</h4>
-                <p ><small >Enter the 6-digit code sent to your </small>
-                <h5>Email Address/ Phone Number</h5></p>
+                <span><small >Enter the 6-digit code sent to your </small></span>
+                <h5>Email Address/ Phone Number</h5>
                 <OTPInputBox defaultValue={otp} onChange={(otp) => setOTP(otp)}/>
 
                 <p className="text-center"><a className="text-center" href="">Resend Code</a></p>

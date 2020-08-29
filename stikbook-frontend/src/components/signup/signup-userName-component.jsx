@@ -59,18 +59,16 @@ const UserName = () => {
             number: isNumberRegx.test(password) ? true : false,
             specialChar: specialCharacterRegx.test(password) ? true : false
         });
-
     };
-
-    const onSubmit = async() => {
-
+    const onSubmit = () => {
         const obj = {email:userName,userName:userName,password:password}; 
-        const {data:post } = await axios.post("http://localhost:5000/api/users/password_userName", obj);
-        console.log(post);
-        
-        if(userName !== undefined && password !== undefined){
-            history.push("./interest");
-        }         
+        async function postData(){
+            const res = await axios.post("users/password_userName", obj);
+            if(res.statusText==="OK"){
+                history.push("./Interest");
+            }  
+        }
+        postData();       
     }       
    
         return (     

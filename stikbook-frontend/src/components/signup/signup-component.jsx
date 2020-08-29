@@ -1,6 +1,6 @@
-import React,{ useState } from "react";
+import React,{ useState,useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import {UserContext} from '../context/userContext';
 import DatePickerInput from "../../utils/datePicker"
 import './signup-component.css'
 import Logo from "../../assets/images/logo_stikbook.png"
@@ -9,41 +9,45 @@ import PhoneNumberInput from "../../utils/phoneInput"
 import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
 import Moment from 'moment';
 import {useForm} from 'react-hook-form';
-import axios from 'axios';
+import axios from '../../axios';
+
 
 const SignUp =(props) => {
-
-    const {register, handleSubmit, errors} = useForm();
     
+    const {register, handleSubmit, errors} = useForm();
+    const {userEmail,setUserEmail} = useContext(UserContext);
     const [fNameVal, setFName] = useState();
     const [lNameVal, setLName] = useState();
     const [emailVal, setEmail] = useState();
     const [genderVal, setGender] = useState();
     const [phone, setPhone] =useState();
     let [dob, setDob] = useState();
-
+    
     const history = useHistory();
     dob = Moment(dob).format('MM-DD-YYYY');
     
-    const onSubmit = async () => {
+    const onSubmit =  () => {
 
         const obj = {first_name:fNameVal,last_name:lNameVal,email:emailVal,phone:phone,gender:genderVal,dob:dob}; 
-        const {data:post } = await axios.post("http://localhost:5000/api/users/signup", obj);
-        console.log(post);
-
-        if(phone !== undefined && dob !== undefined && fNameVal !== undefined &&
-        lNameVal !== undefined && emailVal !== undefined && genderVal !== undefined){
-            history.push("./verification");
-        }         
+        
+        async function postData(){
+            const res = await axios.post("users/signup", obj);
+            if(res.statusText==="OK"){
+                history.push("./verification");
+            }  
+        }
+        postData();
     }
 
         return ( 
             <StyledBody>
             <CenterBox>
             <form onSubmit={handleSubmit(onSubmit)}>
+        
                 <div className="form-group text-center">
                     <a href=""><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                     <h3 >Join Stikbook</h3>
+                    
                     <small className="text-center" >Are you ready to meet great talent from around the world?</small>
                     <h6 className="text-center"> Tell us a bit about yourself</h6>
                 </div>
@@ -106,7 +110,7 @@ const SignUp =(props) => {
                     <p className="text-danger">Gender is required</p>
                     )}
                 <div className="form-group text-center">
-                    <Button type="submit" className="btn">Continue</Button>
+                    <Button type="submit" className="btn" onClick={()=>setUserEmail(emailVal)}>Continue</Button>
                 </div>
                 <div className="row">
                     <div className="col"><Hr /></div>
@@ -128,4 +132,5 @@ const SignUp =(props) => {
         </StyledBody>
         );
     }
+    
 export default SignUp;

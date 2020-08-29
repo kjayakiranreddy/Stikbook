@@ -1,7 +1,6 @@
 import React from "react";
 import "./login-component.css";
 import Logo from "../../assets/images/logo_stikbook.png";
-import UsePasswordToggle from "../../utils/usePasswordToggle";
 import { Button, StyledBody,CenterBox } from "../styledcomponets/lib";
 
 const ContinuePage = () => {
