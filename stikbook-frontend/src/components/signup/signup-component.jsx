@@ -2,7 +2,7 @@ import React,{ useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import DatePickerInput from "../../utils/datePicker"
-import './signup-component.css'
+import './signup-component.css';
 import Logo from "../../assets/images/logo_stikbook.png"
 import { useHistory } from "react-router-dom";
 import PhoneNumberInput from "../../utils/phoneInput"
@@ -23,22 +23,11 @@ const SignUp =(props) => {
     dob = Moment(dob).format('MM-DD-YYYY');
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        sessionStorage.setItem('phone Number', phone);
-        sessionStorage.setItem('dob', dob);
-        sessionStorage.setItem('firstName',fNameVal);
-        sessionStorage.setItem('lastName',lNameVal);
-        sessionStorage.setItem('email',emailVal);
-        sessionStorage.setItem('gender',genderVal);
 
-        if(phone != undefined && dob != undefined && fNameVal != undefined &&
-        lNameVal != undefined && emailVal != undefined && genderVal != undefined){
-            history.push("./verification");
-        }
-        else
-        {
-            alert('Please fill all the details');
-        }      
-          
+        if(phone != undefined && dob != undefined && fNameVal != undefined &&lNameVal != undefined
+           && emailVal != undefined && genderVal != undefined)   history.push("./verification");
+        else alert('Please fill all the details');
+                
     }
         return ( 
             <StyledBody>

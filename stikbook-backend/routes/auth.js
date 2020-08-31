@@ -3,6 +3,8 @@ const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const {User} = require('../models/user');
 const {Credentials} = require('../models/credentials');
+const { generateOtp } = require('../middleware/services/generateOTP');
+const { sendEmail } = require('../middleware/services/sendEmail');
 const mongoose = require('mongoose');
 const express = require('express');
 const { Authentication } = require('../models/authentication');
@@ -26,7 +28,7 @@ router.post('/password_userName', async (req, res) => {
     user_credentials.password = await bcrypt.hash(user_credentials.password, salt);
 
     user_credentials.save();
-    let user =await  User.findOne( {email: user_credentials.email});
+    let user = await  User.findOne( {email: user_credentials.email});
     
     const token = user.generateAuthToken();
     res.header('x-auth-token',token).send(_.pick(user_credentials,['email','userName']));
