@@ -4,19 +4,30 @@ import Logo from "../../assets/images/logo_stikbook.png";
 import 'react-tabs/style/react-tabs.css';
 import PhoneInput from "../../utils/phoneInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import UsePasswordToggle from "../../utils/usePasswordToggle";
-import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
+import { Button, StyledBody,CenterBox } from "../styledcomponets/lib";
+import {useForm} from 'react-hook-form';
+import { useHistory } from "react-router-dom";
 
 const Forgotpassword = () => {
-  const [PasswordInputType,ToggleIcon] = UsePasswordToggle();
+  const {register, handleSubmit, errors} = useForm();
   const [selectedTab, setSelectedTab] = useState('tab-1');
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+  const history = useHistory();
+
+  const onSubmit = data => {
+
+    if(email !== undefined || phone !== undefined){
+        history.push("./ContinuePage");
+    }
+  }
 
   return (
     <StyledBody>
-            <CenterBox>
-    <form action="ContinuePage" method="get">
+    <CenterBox>
+    <form onSubmit={handleSubmit(onSubmit)}>
     <div className="form-group">
-    <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
+    <a href=""><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
    
     <p className="text-center">Enter Email Address/Phone Number</p>
     </div>
@@ -30,12 +41,16 @@ const Forgotpassword = () => {
                 <div className="input-group-prepend">
                         <span className="input-group-text"> <FontAwesomeIcon icon="envelope" /></span>
                 </div>
-                    < input  type="email" className="form-control" placeholder="Email" />
-                    <br></br>
-       </div>
+                  <input type="email" name="email" className="form-control" defaultValue={email} onChange={(e) => setEmail(e.target.value)} 
+                  placeholder="Email Address" ref={register({required : true})}/>
+                  <br></br>
+        </div>
+        {errors.email && errors.email.type === "required" && (
+          <p className="text-danger">Email Address is required</p>
+        )}
       </TabPanel>
       <TabPanel item="tab-2">
-      <PhoneInput />     
+      <PhoneInput name="phone_number" defaultValue={phone} onChange={(phone) => setPhone(phone)}/>     
       </TabPanel>
       <div className="form-group text-center">
                     <Button type="submit" className="btn btn-link">Reset Password</Button>

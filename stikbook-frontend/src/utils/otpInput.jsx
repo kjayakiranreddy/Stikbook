@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import OtpInput from 'react-otp-input';
 
-const OTPInputBOxs=()=> {
-
- const [enteredOtp, setEnteredOtp] = useState('');
+const OTPInputBOxs= ({defaultValue,onChange}) => {
 
 const OTPBoxs = (<OtpInput
     inputStyle={{  
@@ -14,8 +12,8 @@ const OTPBoxs = (<OtpInput
         borderRadius: 4,  
         border: '2px solid rgba(0,0,0,0.4)',  
       }} 
-    value={enteredOtp}
-    onChange={setEnteredOtp}
+    value={defaultValue}
+    onChange={onChange}
     numInputs={6}
     otpType="number"
     isInputNum={true}  

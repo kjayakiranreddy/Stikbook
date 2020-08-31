@@ -3,7 +3,7 @@ import "./login-component.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../../assets/images/logo_stikbook.png";
 import UsePasswordToggle from "../../utils/usePasswordToggle";
-import { Button, StyledBody,CenterBox, Hr } from "../styledcomponets/lib";
+import { Button, StyledBody,CenterBox } from "../styledcomponets/lib";
 
 const PasswordReset = () => {
 
@@ -13,7 +13,7 @@ const PasswordReset = () => {
             <CenterBox>
         <form>
             <div className="form-group text-center">
-                <a><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
+                <a href="/home"><img className="stikBookLogo" src={Logo} alt="Stikbook Logo"></img></a>
                 <h3 >StikBook</h3>
                 <p >Password Reset</p>
             </div>

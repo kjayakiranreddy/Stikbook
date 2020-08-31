@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import BgImg from '../../assets/images/login_bg.jpg';
 
